@@ -1,0 +1,50 @@
+#include <Arduino.h>
+
+
+
+const int LED1 = 16;
+const int LED2 = 17;
+const int LED3 = 18;
+
+const unsigned long interval1 = 200;
+const unsigned long interval2 = 500;
+const unsigned long interval3 = 1000;
+
+unsigned long prev1 = 0;
+unsigned long prev2 = 0;
+unsigned long prev3 = 0;
+
+bool state1 = false;
+bool state2 = false;
+bool state3 = false;
+
+void setup() {
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
+  pinMode(LED3, OUTPUT);
+}
+
+void loop() {
+  unsigned long now = millis();
+
+  // LED1 — 200 мс
+  if (now - prev1 >= interval1) {
+    prev1 = now;
+    state1 = !state1;
+    digitalWrite(LED1, state1);
+  }
+
+  // LED2 — 500 мс
+  if (now - prev2 >= interval2) {
+    prev2 = now;
+    state2 = !state2;
+    digitalWrite(LED2, state2);
+  }
+
+  // LED3 — 1000 мс
+  if (now - prev3 >= interval3) {
+    prev3 = now;
+    state3 = !state3;
+    digitalWrite(LED3, state3);
+  }
+}
